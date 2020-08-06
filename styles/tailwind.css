@@ -1,0 +1,28 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+
+.nav-link {
+  @apply px-3 py-2 rounded-md text-sm font-medium text-gray-300 cursor-pointer;
+}
+.nav-link:hover {
+  @apply text-white bg-gray-700;
+}
+.nav-link:focus {
+  @apply outline-none text-white bg-gray-700;
+}
+
+.nav-link-current {
+  @apply px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900;
+}
+
+.nav-link-current:focus {
+  @apply outline-none text-white bg-gray-700;
+}
+
+
+
+
+
+@tailwind utilities;
