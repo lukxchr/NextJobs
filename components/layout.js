@@ -25,14 +25,10 @@ const Layout = ({ children, testProp }) => {
               </div>
               <div className='hidden md:block'>
                 <div className='ml-10 flex items-baseline'>
-                  {navLinks.slice(0).map(link =>
+                  {navLinks.map(link =>
                     <Link href={link.pathname} key={link.name}>
                       <p className={`mr-4 ${router.pathname === link.pathname ? 'nav-link-current' : 'nav-link'}`}>{link.name}</p>
                     </Link>)}
-                  {/* <Link href='/'><p className={router.pathname === '/' ? 'nav-link-current' : 'nav-link'}>Jobs</p></Link>
-                  <Link href='/categories'><p className='ml-4 nav-link'>Categories</p></Link>
-                  <Link href='/companies'><p className='ml-4 nav-link'>Companies</p></Link>
-                  <Link href='/locations'><p className='ml-4 nav-link'>Locations</p></Link> */}
                 </div>
               </div>
             </div>
@@ -76,11 +72,12 @@ const Layout = ({ children, testProp }) => {
         {dropdownIsOpen &&
           <div className='md:hidden'>
             <div className='px-2 pt-2 pb-3 sm:px-3'>
-              <a href='#' className='block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700'>Dashboard</a>
-              <a href='#' className='mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'>Team</a>
-              <a href='#' className='mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'>Projects</a>
-              <a href='#' className='mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'>Calendar</a>
-              <a href='#' className='mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'>Reports</a>
+              {navLinks.map(link =>
+                <Link href={link.pathname} key={link.name}>
+                  <p className={router.pathname === link.pathname ? 'nav-link-mobile-current' : 'nav-link-mobile'}>
+                    {link.name}
+                  </p>
+                </Link>)}
             </div>
             <div className='pt-4 pb-3 border-t border-gray-700'>
               <div className='flex items-center px-5'>
@@ -110,7 +107,6 @@ const Layout = ({ children, testProp }) => {
       </header> */}
       <main>
         <div className='text-6xl'>{router.pathname}</div>
-        {testProp}
         {children}
       </main>
     </div>
