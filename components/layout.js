@@ -106,7 +106,7 @@ const Layout = ({ children, testProp }) => {
         </div>
       </header> */}
       <main>
-        <div className='text-6xl'>{router.pathname}</div>
+        {/* <div className='text-6xl'>{router.pathname}</div> */}
         {children}
       </main>
     </div>
