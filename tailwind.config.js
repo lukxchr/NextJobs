@@ -2,6 +2,10 @@ module.exports = {
   purge: [],
   theme: {
     extend: {
+      fontSize: {
+        '2xs': '0.5rem',
+        '3xs': '0.25rem'
+      },
       spacing: {
         '1/2': '50%',
         '1/3': '33.333333%',
