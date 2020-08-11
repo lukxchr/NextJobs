@@ -1,28 +1,30 @@
 import React from 'react'
 import Layout from '../components/layout'
+import { initApolloClient } from '../graphql/apollo'
+
+import { GET_TAGS } from '../graphql/queries'
 
 const Categories = (props) => {
   return (
     <Layout>
-      <div>abc </div>
-      {/* {props.data.map(d => { <div>{d}</div> })} */}
-      {props.data[0].name.toString()}
+      {props.categories.map(category => (<div key={category.id}>{category.id} -- {category.name} -- {category.tag_jobs_aggregate.aggregate.count}</div>))}
     </Layout>
   )
 }
 
 export async function getStaticProps () {
-  const data = [
-    { id: 1, name: 'react' },
-    { id: 2, name: 'vue' },
-    { id: 3, name: 'angular' },
-    { id: 4, name: 'express' }
-  ]
+  const apolloClient = initApolloClient()
+  const query = await apolloClient.query({
+    query: GET_TAGS
+  })
+  // console.log(query.data)
+  const categories = query.data.tags || []
 
   return {
     props: {
-      data
-    }
+      categories
+    },
+    revalidate: 60
   }
 }
 

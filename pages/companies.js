@@ -1,8 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
-import { useQuery } from '@apollo/react-hooks'
 
-import { withApollo, initApolloClient } from '../graphql/apollo'
+import { initApolloClient } from '../graphql/apollo'
 
 import { GET_COMPANIES } from '../graphql/queries'
 

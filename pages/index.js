@@ -3,55 +3,50 @@ import Head from 'next/head'
 
 import Layout from '../components/layout'
 import SearchBox from '../components/SearchBox'
-import JobCard from '../components/JobCard'
 import JobList from '../components/JobList'
-import { GET_FEATURED_JOBS } from '../graphql/queries'
+import { GET_FEATURED_JOBS, GET_JOBS } from '../graphql/queries'
 import { useJobs } from '../hooks/useJobs'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-function Home ({ featuredJobs }) {
-  const { loading, error, jobs } = useJobs('')
+function Home ({ jobs }) {
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filteredJobs, setFilteredJobs] = useState(jobs)
+
   useEffect(() => {
-    console.log(jobs)
-  }, [jobs])
+    setFilteredJobs(
+      jobs.filter(job => job.title.toUpperCase().includes(searchQuery.toUpperCase())))
+  }, [searchQuery])
 
   return (
-    <Layout testProp='test prop passed from index page comp'>
+    <Layout>
       <div className='m-8'>
         <SearchBox
-          onChange={(v) => console.log(v)}
-          placeholder='Search jobs'
+          onChange={value => setSearchQuery(value)}
+          placeholder='Search jobs...'
         />
       </div>
-      <JobList
-        jobs={jobs}
-      />
-      {/* <div className='m-8 flex flex-wrap'>
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-      </div> */}
+      {filteredJobs.length
+        ? <JobList jobs={filteredJobs} />
+        : <div className='flex justify-center items-center text-xl text-gray-800 mx-16'>No results.</div>}
 
     </Layout>
   )
 }
 
-// export async function getStaticProps () {
-//   const apolloClient = initApolloClient()
-//   const query = await apolloClient.query({
-//     query: GET_FEATURED_JOBS
-//   })
-//   const featuredJobs = query.data.jobs || []
+export async function getStaticProps () {
+  const apolloClient = initApolloClient()
+  const query = await apolloClient.query({
+    query: GET_JOBS
+  })
+  const jobs = query.data.jobs || []
 
-//   return {
-//     props: {
-//       featuredJobs
-//     },
-//     revalidate: 60
-//   }
-// }
+  return {
+    props: {
+      jobs
+    },
+    revalidate: 60
+  }
+}
 
-export default withApollo(Home)
+export default Home
