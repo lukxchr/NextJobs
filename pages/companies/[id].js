@@ -7,7 +7,7 @@ function Company({jobs}) {
   return (
     <Layout>
     <div>
-      {jobs.length} jobs
+      placeholder: {jobs.length} jobs for this company
     </div>
     </Layout>
   )

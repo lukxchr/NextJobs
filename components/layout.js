@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-const Layout = ({ children, testProp }) => {
+function Layout ({ children, testProp }) {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
   const router = useRouter()
 
@@ -15,14 +15,17 @@ const Layout = ({ children, testProp }) => {
   ]
 
   return (
-    <div>
-      <nav className='bg-gray-800'>
+    <div id='layout-container' className='h-screen w-full overflow-y-scroll'>
+      <nav className='fixed w-full bg-gray-800'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='flex items-center justify-between h-16'>
             <div className='flex items-center'>
               <div className='flex-shrink-0'>
-                <img className='h-8 w-8' src='https://tailwindui.com/img/logos/workflow-mark-on-dark.svg' alt='Workflow logo' />
+                <Link href='/'>
+                  <img className='h-8 w-8 cursor-pointer' src='https://tailwindui.com/img/logos/workflow-mark-on-dark.svg' alt='Workflow logo' />
+                </Link>
               </div>
+              {/* nav links for md+ screen sizes */}
               <div className='hidden md:block'>
                 <div className='ml-10 flex items-baseline'>
                   {navLinks.map(link =>
@@ -38,16 +41,21 @@ const Layout = ({ children, testProp }) => {
                 <div className='ml-3 relative' onClick={() => setDropdownIsOpen(!dropdownIsOpen)}>
                   <div>
                     <button className='max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid' id='user-menu' aria-label='User menu' aria-haspopup='true'>
-                      <img className='h-8 w-8 rounded-full' src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' alt='' />
+                      <Link href='/'>
+                        <p className='nav-link'>Sign in</p>
+                      </Link>
                     </button>
                   </div>
-
                   {dropdownIsOpen &&
                     <div className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg'>
                       <div className='py-1 rounded-md bg-white shadow-xs' role='menu' aria-orientation='vertical' aria-labelledby='user-menu'>
-                        <a href='#' className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' role='menuitem'>Your Profile</a>
-                        <a href='#' className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' role='menuitem'>Settings</a>
-                        <a href='#' className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100' role='menuitem'>Sign out</a>
+                        <a
+                          href='#'
+                          className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                          role='menuitem'
+                          onClick={() => alert('placeholder: sign in for companies clicked')}
+                        >Sign in (for companies)
+                        </a>
                       </div>
                     </div>}
                 </div>
@@ -69,6 +77,7 @@ const Layout = ({ children, testProp }) => {
             </div>
           </div>
         </div>
+        {/* nav links for sm screens */}
         {dropdownIsOpen &&
           <div className='md:hidden'>
             <div className='px-2 pt-2 pb-3 sm:px-3'>
@@ -79,39 +88,23 @@ const Layout = ({ children, testProp }) => {
                   </p>
                 </Link>)}
             </div>
-            <div className='pt-4 pb-3 border-t border-gray-700'>
-              <div className='flex items-center px-5'>
-                <div className='flex-shrink-0'>
-                  <img className='h-10 w-10 rounded-full' src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' alt='' />
-                </div>
-                <div className='ml-3'>
-                  <div className='text-base font-medium leading-none text-white'>Tom Cook</div>
-                  <div className='mt-1 text-sm font-medium leading-none text-gray-400'>tom@example.com</div>
-                </div>
-              </div>
-              <div className='mt-3 px-2'>
-                <a href='#' className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'>Your Profile</a>
-                <a href='#' className='mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'>Settings</a>
-                <a href='#' className='mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'>Sign out</a>
+            <div className='pt-2 pb-2 border-t border-gray-700'>
+              <div className='mt-0 px-2'>
+                <a
+                  href='#'
+                  className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'
+                  onClick={() => alert('placeholder: sign in for companies clicked')}
+                >
+                  Sign in (for companies)
+                </a>
               </div>
             </div>
           </div>}
       </nav>
-
-      {/* <header className='bg-white shadow'>
-        <div className='max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8'>
-          <h1 className='text-3xl font-bold leading-tight text-gray-900'>
-        Dashboard
-          </h1>
-        </div>
-      </header> */}
-      <main>
-        {/* <div className='text-6xl'>{router.pathname}</div> */}
+      <main className='mt-24'>
         {children}
       </main>
     </div>
-
-  // <div className='h-screen bg-teal-400'>{children}</div>
   )
 }
 

@@ -7,7 +7,7 @@ function Category({jobs}) {
   return (
     <Layout>
     <div>
-      {jobs.length} jobs
+    placeholder: {jobs.length} jobs for this category
     </div>
     </Layout>
   )

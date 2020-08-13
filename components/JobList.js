@@ -1,7 +1,7 @@
 import React from 'react'
 import JobCard from './JobCard'
 
-const JobList = ({ jobs }) => {
+function JobList ({ jobs }) {
   return (
     <div>
       {jobs.map(job =>

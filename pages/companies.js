@@ -10,8 +10,8 @@ const Companies = ({ companies }) => {
 
   return (
     <Layout>
-      {/* {data[0].id} */}
-      {companies.map(company => <p>{company.name}</p>)}
+      <h3>placeholder: companies:</h3>
+      {companies.map(company => <p key={company.id}>{company.name} -- {company.id}</p>)}
     </Layout>
   )
 }

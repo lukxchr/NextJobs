@@ -7,7 +7,7 @@ function Location({jobs}) {
   return (
     <Layout>
     <div>
-      {jobs.length} jobs
+      placeholder: {jobs.length} jobs for this location
     </div>
     </Layout>
   )
@@ -18,7 +18,6 @@ export async function getStaticPaths() {
   const query = await apolloClient.query({
     query: GET_LOCATIONS
   })
-  console.log(query.data)
   const locations = query.data.locations || []
   const paths = locations.map(location => ({params: {id: location.id}}))
   return {paths, fallback: false}
@@ -29,7 +28,6 @@ export async function getStaticProps({ params }) {
   const query = await apolloClient.query({
     query: GET_LOCATION_JOBS, variables: {id: params.id}
   })
-  console.log(query.data)
   const jobs = query.data.locations[0].jobs || []
   return {props: {jobs}}
 }
