@@ -1,13 +1,9 @@
-import { withApollo, initApolloClient } from '../graphql/apollo'
-import Head from 'next/head'
-
+import { useEffect, useState } from 'react'
 import Layout from '../components/layout'
 import SearchBox from '../components/SearchBox'
 import JobList from '../components/JobList'
-import { GET_FEATURED_JOBS, GET_JOBS } from '../graphql/queries'
-import { useJobs } from '../hooks/useJobs'
-
-import { useEffect, useState } from 'react'
+import { initApolloClient } from '../graphql/apollo'
+import { GET_JOBS } from '../graphql/queries'
 
 function Home ({ jobs }) {
   const [searchQuery, setSearchQuery] = useState('')

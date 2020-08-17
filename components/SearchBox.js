@@ -1,5 +1,4 @@
 import React from 'react'
-// import { ReactComponent as SearchIcon } from '../assets/icons/icon-search.svg'
 
 function SearchBox ({ placeholder, onChange }) {
   return (

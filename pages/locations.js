@@ -1,7 +1,6 @@
 import React from 'react'
 import Layout from '../components/layout'
 import { initApolloClient } from '../graphql/apollo'
-
 import { GET_LOCATIONS } from '../graphql/queries'
 
 function Locations ({ locations }) {

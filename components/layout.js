@@ -1,11 +1,13 @@
 import { useState } from 'react'
-
+import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useAuth } from '../auth/firebase-auth'
 
 function Layout ({ children, testProp }) {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
   const router = useRouter()
+  const auth = useAuth()
 
   const navLinks = [
     { name: 'Jobs', pathname: '/' },
@@ -41,20 +43,26 @@ function Layout ({ children, testProp }) {
                 <div className='ml-3 relative' onClick={() => setDropdownIsOpen(!dropdownIsOpen)}>
                   <div>
                     <button className='max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid' id='user-menu' aria-label='User menu' aria-haspopup='true'>
-                      <Link href='/'>
-                        <p className='nav-link'>Sign in</p>
-                      </Link>
+                      {auth.user
+                        ? <p className='nav-link'>Account</p>
+                        : <p className='nav-link'>Sign in</p>}
                     </button>
                   </div>
                   {dropdownIsOpen &&
                     <div className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg'>
                       <div className='py-1 rounded-md bg-white shadow-xs' role='menu' aria-orientation='vertical' aria-labelledby='user-menu'>
+                        <Link href='/signin'>
+                          <a
+                            className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                            role='menuitem'
+                          >Sign in (for companies)
+                          </a>
+                        </Link>
                         <a
-                          href='#'
                           className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
                           role='menuitem'
-                          onClick={() => alert('placeholder: sign in for companies clicked')}
-                        >Sign in (for companies)
+                          onClick={() => auth.signout()}
+                        >Sign out
                         </a>
                       </div>
                     </div>}
@@ -90,17 +98,19 @@ function Layout ({ children, testProp }) {
             </div>
             <div className='pt-2 pb-2 border-t border-gray-700'>
               <div className='mt-0 px-2'>
-                <a
-                  href='#'
-                  className='block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700'
-                  onClick={() => alert('placeholder: sign in for companies clicked')}
-                >
+                <Link href='/signin'>
+                  <p className='nav-link-mobile'>
                   Sign in (for companies)
-                </a>
+                  </p>
+                </Link>
               </div>
             </div>
           </div>}
       </nav>
+      <Head>
+        <title>NextJobs</title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
       <main className='mt-24'>
         {children}
       </main>
