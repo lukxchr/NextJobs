@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import Layout from '../components/layout'
-import SearchBox from '../components/SearchBox'
-import JobList from '../components/JobList'
-import { initApolloClient } from '../graphql/apollo'
-import { GET_JOBS } from '../graphql/queries'
+import Layout from 'components/layout'
+import SearchBox from 'components/SearchBox'
+import JobList from 'components/JobList'
+import { initApolloClient } from 'graphql/apollo'
+import { GET_JOBS } from 'graphql/queries'
 
 function Home ({ jobs }) {
   const [searchQuery, setSearchQuery] = useState('')

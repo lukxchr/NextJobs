@@ -1,6 +1,6 @@
-import Layout from '../../components/layout'
-import { initApolloClient } from '../../graphql/apollo'
-import { GET_TAGS, GET_TAG_JOBS } from '../../graphql/queries'
+import Layout from 'components/layout'
+import { initApolloClient } from 'graphql/apollo'
+import { GET_TAGS, GET_TAG_JOBS } from 'graphql/queries'
 
 
 function Category({jobs}) {

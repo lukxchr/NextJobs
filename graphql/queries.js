@@ -175,7 +175,6 @@ export const GET_TAGS = gql`
     }
   }
 `
-
 export const GET_LOCATIONS = gql`
   query GetLocations {
     locations(order_by: {jobs_aggregate: {count: desc}, name: asc}) {

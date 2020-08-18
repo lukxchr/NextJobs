@@ -1,6 +1,6 @@
-import Layout from '../components/layout'
-import { initApolloClient } from '../graphql/apollo'
-import { GET_COMPANIES } from '../graphql/queries'
+import Layout from 'components/layout'
+import { initApolloClient } from 'graphql/apollo'
+import { GET_COMPANIES } from 'graphql/queries'
 
 const Companies = ({ companies }) => {
   // const { loading, error, data } = useQuery(GET_COMPANIES)

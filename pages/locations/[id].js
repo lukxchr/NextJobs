@@ -1,6 +1,6 @@
-import Layout from '../../components/layout'
-import { initApolloClient } from '../../graphql/apollo'
-import { GET_LOCATIONS, GET_LOCATION_JOBS } from '../../graphql/queries'
+import Layout from 'components/layout'
+import { initApolloClient } from 'graphql/apollo'
+import { GET_LOCATIONS, GET_LOCATION_JOBS } from 'graphql/queries'
 
 
 function Location({jobs}) {

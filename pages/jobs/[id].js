@@ -1,8 +1,8 @@
-import Layout from '../../components/layout'
-import { initApolloClient } from '../../graphql/apollo'
-import { GET_JOB_IDS, GET_JOB_BY_ID } from '../../graphql/queries'
+import Layout from 'components/layout'
+import { initApolloClient } from 'graphql/apollo'
+import { GET_JOB_IDS, GET_JOB_BY_ID } from 'graphql/queries'
 
-import JobCardWithDetails from '../../components/JobCardWithDetails'
+import JobCardWithDetails from 'components/JobCardWithDetails'
 
 
 export default function Job({ id, job }) {

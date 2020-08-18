@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useAuth } from '../auth/firebase-auth'
+import { useAuth } from 'auth/firebase-auth'
 
 function Signin () {
   const auth = useAuth()
