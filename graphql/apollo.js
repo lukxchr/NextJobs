@@ -117,8 +117,11 @@ function createApolloClient (initialState = {}) {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: 'https://honest-crane-55.hasura.app/v1/graphql',
+      uri: process.env.GRAPHQL_ENDPOINT,
       credentials: 'same-origin',
+      headers: {
+        'x-hasura-admin-secret': process.env.GRAPHQL_ADMIN_SECRET
+      },
       fetch
     }),
     cache: new InMemoryCache().restore(initialState)
