@@ -1,58 +1,46 @@
 import gql from 'graphql-tag'
 
-export const GET_JOBS = gql`
-  query GetJobs {
-    jobs(order_by: {isFeatured: desc, created_at: desc}) {
-      company {
-        id
-        name
-        logoPath
-      }
+const JOB_FIELDS = gql`
+  fragment JobFields on jobs {
+    company {
       id
-      title
-      isFeatured
-      created_at
-      salary
-      location {
+      name
+      logoPath
+    }
+    id
+    title
+    isFeatured
+    created_at
+    salary
+    location {
+      id
+      name
+    }
+    job_tags {
+      tag {
         id
         name
-      }
-      job_tags {
-        tag {
-          id
-          name
-        }
       }
     }
   }
+`
+export const GET_JOBS = gql`
+  query GetJobs {
+    jobs(order_by: {isFeatured: desc, created_at: desc}) {
+      ...JobFields
+    }
+  }
+  ${JOB_FIELDS}
 `
 
 export const GET_JOB_BY_ID = gql`
   query GetJobById($id: uuid) {
     jobs(where: {id: {_eq: $id}}) {
-      company {
-        id
-        name
-        logoPath
-      }
-      id
-      title
-      isFeatured
-      created_at
-      salary
+      ...JobFields
       description
-      location {
-        id
-        name
-      }
-      job_tags {
-        tag {
-          id
-          name
-        }
-      }
     }
   }
+${JOB_FIELDS}
 `
 
 export const GET_JOB_IDS = gql`
@@ -70,30 +58,12 @@ query GetTagJobs($id: uuid) {
     name
     tag_jobs {
       job {
-        company {
-          id
-          name
-          logoPath
-        }
-        id
-        title
-        isFeatured
-        created_at
-        salary
-        location {
-          id
-          name
-        }
-        job_tags {
-          tag {
-            id
-            name
-          }
-        }
+        ...JobFields
       }
     }
   }
 }
+${JOB_FIELDS}
 `
 
 export const GET_COMPANY_JOBS = gql`
@@ -104,62 +74,24 @@ query GetCompanyJobs($id: uuid) {
       logoPath
       website
       jobs {
-        id
-        created_at
-        isFeatured
-        company {
-          id
-          name
-          logoPath
-          website
-        }
-        job_tags {
-          tag {
-            id
-            name
-          }
-        }
-        salary
-        title
-        location {
-          id
-          name
-        }
+        ...JobFields
       } 
     }
   }
+  ${JOB_FIELDS}
 `
 
 export const GET_LOCATION_JOBS = gql`
-query GetLocationJobs($id: uuid = "35448e06-b88f-41a0-9e5e-d696d4a6f69c") {
+query GetLocationJobs($id: uuid) {
   locations(where: {id: {_eq: $id}}) {
     id
     name
     jobs {
-      id
-      created_at
-      isFeatured
-      company {
-        id
-        name
-        logoPath
-        website
-      }
-      job_tags {
-        tag {
-          id
-          name
-        }
-      }
-      salary
-      title
-      location {
-        id
-        name
-      }
+      ...JobFields
     }
   }
 }
+${JOB_FIELDS}
 `
 
 export const GET_TAGS = gql`
@@ -180,6 +112,10 @@ export const GET_LOCATIONS = gql`
     locations(order_by: {jobs_aggregate: {count: desc}, name: asc}) {
       id
       name
+      coords {
+        latitude
+        longitude
+      }
       jobs_aggregate {
         aggregate {
           count
@@ -200,33 +136,6 @@ export const GET_COMPANIES = gql`
       jobs_aggregate {
         aggregate {
           count
-        }
-      }
-    }
-  }
-`
-
-export const GET_FEATURED_JOBS = gql`
-  query GetFeaturedJobs {
-    jobs(where: {isFeatured: {_eq: true}}) {
-      company {
-        id
-        name
-        logoPath
-      }
-      id
-      title
-      isFeatured
-      created_at
-      salary
-      location {
-        id
-        name
-      }
-      job_tags {
-        tag {
-          id
-          name
         }
       }
     }

@@ -14,7 +14,7 @@ function JobCard ({ job }) {
           <div className='ml-2'>
             <div className='flex items-baseline'>
               <Link href={`companies/${company.id}`}>
-                <div className='text-indigo-700 text-sm hover:underline focus:underline cursor-pointer'>{company.name}</div>
+                <a className='text-indigo-700 text-sm hover:underline focus:underline cursor-pointer'>{company.name}</a>
               </Link>
               <div>
                 {isFeatured &&
@@ -24,17 +24,17 @@ function JobCard ({ job }) {
               </div>
             </div>
             <Link href={`/jobs/${id}`}>
-              <div
+              <a
                 className='text-lg font-bold font-gray-900 tracking-wide mt-1 cursor-pointer
               hover:underline'
               >{title}
-              </div>
+              </a>
             </Link>
             <div className='flex flex-wrap text-xs text-gray-600'>
               <span>{fromattedTimeSinceAdded}</span>
               <span className='font-extrabold mx-1'>&#183;</span>
               <Link href={`/locations/${location.id}`}>
-                <span className='hover:underline focus:underline cursor-pointer'>{location.name}</span>
+                <a className='hover:underline focus:underline cursor-pointer'>{location.name}</a>
               </Link>
               <span className='font-extrabold mx-1'>&#183;</span>
               <span>{salary}</span>
@@ -42,13 +42,18 @@ function JobCard ({ job }) {
             {/* tags section for sm and md screens */}
             <div className='flex flex-wrap mt-1 lg:hidden'>
               {jobTags.map(tag =>
-                <div
+                <Link
                   key={tag.tag.id}
-                  className='flex items-center mt-2 mr-1 px-2 bg-indigo-200 text-indigo-600 uppercase
-                   rounded-md text-xs tracking-wide font-semibold'
+                  href={`/categories/${tag.tag.id}`}
                 >
-                  {tag.tag.name}
-                </div>)}
+                  <a className='flex items-center mt-2 mr-1 px-2 bg-indigo-200 text-indigo-600
+              uppercase rounded-md text-xs tracking-wide font-semibold cursor-pointer
+              hover:text-indigo-200 hover:bg-indigo-700 focus:text-indigo-200 focus:bg-indigo-700 outline-none'
+                  >
+                    {tag.tag.name}
+                  </a>
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -59,12 +64,12 @@ function JobCard ({ job }) {
               key={tag.tag.id}
               href={`/categories/${tag.tag.id}`}
             >
-              <div className='flex items-center mt-2 mr-1 px-2 bg-indigo-200 text-indigo-600
+              <a className='flex items-center mt-2 mr-1 px-2 bg-indigo-200 text-indigo-600
               uppercase rounded-md text-xs tracking-wide font-semibold cursor-pointer
-              hover:text-indigo-200 hover:bg-indigo-700 focus:text-indigo-200 focus:bg-indigo-700'
+              hover:text-indigo-200 hover:bg-indigo-700 focus:text-indigo-200 focus:bg-indigo-700 outline-none'
               >
                 {tag.tag.name}
-              </div>
+              </a>
             </Link>)}
         </div>
       </div>
