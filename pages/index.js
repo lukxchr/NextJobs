@@ -16,7 +16,7 @@ function Home ({ jobs }) {
 
   return (
     <Layout>
-      <div className='m-8'>
+      <div className='my-8'>
         <SearchBox
           onChange={value => setSearchQuery(value)}
           placeholder='Search jobs...'

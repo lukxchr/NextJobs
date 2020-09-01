@@ -8,9 +8,6 @@ import {
 import Link from 'next/link'
 
 function MapChart ({ locations, setTooltipContent }) {
-  const remoteLoctions = locations.filter(location => location.coords === null)
-  const nonremoteLocations = locations.filter(location => location.coords !== null)
-
   const geoUrl = 'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json'
 
   const getTooltipContent = (location) => {
@@ -34,7 +31,7 @@ function MapChart ({ locations, setTooltipContent }) {
                 />
               ))}
           </Geographies>
-          {nonremoteLocations.map(location =>
+          {locations.map(location =>
             <Marker
               key={location.id}
               coordinates={[location.coords.longitude, location.coords.latitude]}

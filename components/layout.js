@@ -72,7 +72,7 @@ function Layout ({ children, testProp }) {
         <title>NextJobs</title>
       </Head>
 
-      <main className='mt-24 mx-8'>
+      <main className='mt-24 mx-6 md:mx-12'>
         {children}
       </main>
     </div>

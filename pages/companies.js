@@ -1,14 +1,19 @@
 import Layout from 'components/layout'
 import { initApolloClient } from 'graphql/apollo'
 import { GET_COMPANIES } from 'graphql/queries'
+import CategoryGrid from 'components/CategoryGrid'
 
 const Companies = ({ companies }) => {
   // const { loading, error, data } = useQuery(GET_COMPANIES)
 
   return (
     <Layout>
-      <h3>placeholder: companies:</h3>
-      {companies.map(company => <p key={company.id}>{company.name} -- {company.id}</p>)}
+      <CategoryGrid
+        categories={companies}
+        detailHrefRoot='/companies'
+      />
+      {/* <h3>placeholder: companies:</h3>
+      {companies.map(company => <p key={company.id}>{company.name} -- {company.id}</p>)} */}
     </Layout>
   )
 }

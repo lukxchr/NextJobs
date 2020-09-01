@@ -1,12 +1,17 @@
 import Layout from 'components/layout'
 import { initApolloClient } from 'graphql/apollo'
 import { GET_TAGS } from 'graphql/queries'
+import CategoryGrid from 'components/CategoryGrid'
 
-const Categories = (props) => {
+const Categories = ({ categories }) => {
   return (
     <Layout>
-      <h3>placeholder: categories:</h3>
-      {props.categories.map(category => (<div key={category.id}>{category.id} -- {category.name} -- {category.tag_jobs_aggregate.aggregate.count}</div>))}
+      <CategoryGrid
+        categories={categories}
+        detailHrefRoot='/categories'
+      />
+      {/* <h3>placeholder: categories:</h3>
+      {props.categories.map(category => (<div key={category.id}>{category.id} -- {category.name} -- {category.jobs_aggregate.aggregate.count}</div>))} */}
     </Layout>
   )
 }

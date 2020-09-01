@@ -56,7 +56,7 @@ query GetTagJobs($id: uuid) {
   tags(where: {id: {_eq: $id}}) {
     id
     name
-    tag_jobs {
+    jobs {
       job {
         ...JobFields
       }
@@ -96,10 +96,11 @@ ${JOB_FIELDS}
 
 export const GET_TAGS = gql`
   query GetTags {
-    tags(order_by: {tag_jobs_aggregate: {count: desc}, name: asc}) {
+    tags(order_by: {jobs_aggregate: {count: desc}, name: asc}) {
       id
       name
-      tag_jobs_aggregate {
+      logoPath
+      jobs_aggregate {
         aggregate {
           count
         }
@@ -112,6 +113,7 @@ export const GET_LOCATIONS = gql`
     locations(order_by: {jobs_aggregate: {count: desc}, name: asc}) {
       id
       name
+      logoPath
       coords {
         latitude
         longitude

@@ -28,7 +28,7 @@ export async function getStaticProps({ params }) {
   const query = await apolloClient.query({
     query: GET_TAG_JOBS, variables: {id: params.id}
   })
-  const jobs = query.data.tags[0].tag_jobs || []
+  const jobs = query.data.tags[0].jobs || []
   return {props: {jobs}}
 }
 

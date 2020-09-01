@@ -2,20 +2,29 @@ import ReactTooltip from 'react-tooltip'
 import { useState } from 'react'
 import Layout from 'components/layout'
 import MapChart from 'components/MapChart'
+import CategoryGrid from 'components/CategoryGrid'
 import { initApolloClient } from 'graphql/apollo'
 import { GET_LOCATIONS } from 'graphql/queries'
 
 function Locations ({ locations }) {
   const [tooltipContent, setTooltipContent] = useState('')
+
+  const remoteLoctions = locations.filter(location => location.coords === null)
+  const nonremoteLocations = locations.filter(location => location.coords !== null)
+
   return (
     <Layout>
       <MapChart
-        locations={locations}
+        locations={nonremoteLocations}
         setTooltipContent={setTooltipContent}
       />
       <ReactTooltip>{tooltipContent}</ReactTooltip>
-      <h3>placeholder: locations:</h3>
-      {locations.map(location => (<div key={location.id}>{location.id} -- {location.name} -- {location.jobs_aggregate.aggregate.count}</div>))}
+      <div className='flex items-center justify-center mt-4'>
+        <CategoryGrid
+          categories={remoteLoctions}
+          detailHrefRoot='/companies'
+        />
+      </div>
     </Layout>
   )
 }
