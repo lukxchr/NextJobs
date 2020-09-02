@@ -1,14 +1,16 @@
 import Layout from 'components/layout'
 import { initApolloClient } from 'graphql/apollo'
 import { GET_COMPANIES, GET_COMPANY_JOBS } from 'graphql/queries'
+import JobList from 'components/JobList'
+
 
 
 function Company({jobs}) {
   return (
     <Layout>
-    <div>
-      placeholder: {jobs.length} jobs for this company
-    </div>
+      <JobList
+        jobs={jobs}
+      />
     </Layout>
   )
 }

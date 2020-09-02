@@ -73,7 +73,7 @@ query GetCompanyJobs($id: uuid) {
       name
       logoPath
       website
-      jobs {
+      jobs (order_by: {isFeatured: desc, created_at: desc}){
         ...JobFields
       } 
     }
@@ -86,7 +86,7 @@ query GetLocationJobs($id: uuid) {
   locations(where: {id: {_eq: $id}}) {
     id
     name
-    jobs {
+    jobs (order_by: {isFeatured: desc, created_at: desc}) {
       ...JobFields
     }
   }
