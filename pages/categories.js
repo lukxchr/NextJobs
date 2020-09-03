@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Layout from 'components/layout'
 import { initApolloClient } from 'graphql/apollo'
 import { GET_TAGS } from 'graphql/queries'
@@ -10,8 +11,9 @@ const Categories = ({ categories }) => {
         categories={categories}
         detailHrefRoot='/categories'
       />
-      {/* <h3>placeholder: categories:</h3>
-      {props.categories.map(category => (<div key={category.id}>{category.id} -- {category.name} -- {category.jobs_aggregate.aggregate.count}</div>))} */}
+      <Head>
+        <title>Categories - NextJobs</title>
+      </Head>
     </Layout>
   )
 }

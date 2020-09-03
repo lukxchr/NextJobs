@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import ReactTooltip from 'react-tooltip'
 import { useState } from 'react'
 import Layout from 'components/layout'
@@ -25,7 +26,9 @@ function Locations ({ locations }) {
         setTooltipContent={setTooltipContent}
       />
       <ReactTooltip>{tooltipContent}</ReactTooltip>
-
+      <Head>
+        <title>Locations - NextJobs</title>
+      </Head>
     </Layout>
   )
 }

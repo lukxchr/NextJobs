@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Layout from 'components/layout'
 import { initApolloClient } from 'graphql/apollo'
 import { GET_JOB_IDS, GET_JOB_BY_ID } from 'graphql/queries'
@@ -9,6 +10,9 @@ export default function Job({ id, job }) {
   return (
     <Layout>
       <JobCardWithDetails job={job}/>
+      <Head>
+        <title>{job.title} - NextJobs</title>
+      </Head>
     </Layout>
   )
 }

@@ -1,14 +1,18 @@
+import Head from 'next/head'
 import Layout from 'components/layout'
 import { initApolloClient } from 'graphql/apollo'
 import { GET_LOCATIONS, GET_LOCATION_JOBS } from 'graphql/queries'
 import JobList from 'components/JobList'
 
-function Location({jobs}) {
+function Location({jobs, locationName}) {
   return (
     <Layout>
       <JobList
         jobs={jobs}
       />
+      <Head>
+        <title>Jobs in {locationName} - NextJobs</title>
+      </Head>
     </Layout>
   )
 }
@@ -29,7 +33,7 @@ export async function getStaticProps({ params }) {
     query: GET_LOCATION_JOBS, variables: {id: params.id}
   })
   const jobs = query.data.locations[0].jobs || []
-  return {props: {jobs}}
+  return {props: {jobs, locationName: query.data.locations[0].name}}
 }
 
 export default Location

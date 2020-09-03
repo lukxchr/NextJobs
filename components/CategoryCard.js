@@ -14,7 +14,7 @@ function CategoryCard ({ category, onClickHref }) {
             alt={`${category.name} logo`}
           />
           <div className='p-2 flex flex-col'>
-            <div className='uppercase text-gray-800 text-lg font-semibold leading-5 tracking-wide'>
+            <div className='uppercase text-gray-800 text-md font-bold leading-5 tracking-wide'>
               {category.name}
             </div>
             <div className='uppercase text-gray-600 text-xs'>

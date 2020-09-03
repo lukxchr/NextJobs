@@ -13,7 +13,7 @@ function JobCard ({ job }) {
           <img className='w-24 h-24 flex-shrink-0 ml-2 object-contain' src={company.logoPath} alt='' />
           <div className='ml-2'>
             <div className='flex items-baseline'>
-              <Link href={`companies/${company.id}`}>
+              <Link href={`/companies/${company.id}`}>
                 <a className='text-indigo-700 text-sm hover:underline focus:underline cursor-pointer'>{company.name}</a>
               </Link>
               <div>
@@ -46,12 +46,7 @@ function JobCard ({ job }) {
                   key={tag.tag.id}
                   href={`/categories/${tag.tag.id}`}
                 >
-                  <a className='flex items-center mt-2 mr-1 px-2 bg-indigo-200 text-indigo-600
-              uppercase rounded-md text-xs tracking-wide font-semibold cursor-pointer
-              hover:text-indigo-200 hover:bg-indigo-700 focus:text-indigo-200 focus:bg-indigo-700 outline-none'
-                  >
-                    {tag.tag.name}
-                  </a>
+                  <a className='tag'>{tag.tag.name}</a>
                 </Link>
               )}
             </div>
@@ -64,12 +59,7 @@ function JobCard ({ job }) {
               key={tag.tag.id}
               href={`/categories/${tag.tag.id}`}
             >
-              <a className='flex items-center mt-2 mr-1 px-2 bg-indigo-200 text-indigo-600
-              uppercase rounded-md text-xs tracking-wide font-semibold cursor-pointer
-              hover:text-indigo-200 hover:bg-indigo-700 focus:text-indigo-200 focus:bg-indigo-700 outline-none'
-              >
-                {tag.tag.name}
-              </a>
+              <a className='tag'>{tag.tag.name}</a>
             </Link>)}
         </div>
       </div>
