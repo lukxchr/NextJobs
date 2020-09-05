@@ -24,8 +24,7 @@ function Home ({ jobs }) {
       </div>
       {filteredJobs.length
         ? <JobList jobs={filteredJobs} />
-        : <div className='flex justify-center items-center text-xl text-gray-800 mx-16'>No results.</div>}
-
+        : <div className='flex justify-center items-center text-xl text-gray-700 mx-16'>No results</div>}
     </Layout>
   )
 }

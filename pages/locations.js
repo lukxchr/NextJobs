@@ -15,16 +15,16 @@ function Locations ({ locations }) {
 
   return (
     <Layout>
-      <div className='flex items-center justify-center mb-4'>
+      <MapChart
+        locations={nonremoteLocations}
+        setTooltipContent={setTooltipContent}
+      />
+      <div className='flex items-center justify-center mt-4'>
         <CategoryGrid
           categories={remoteLoctions}
           detailHrefRoot='/locations'
         />
       </div>
-      <MapChart
-        locations={nonremoteLocations}
-        setTooltipContent={setTooltipContent}
-      />
       <ReactTooltip>{tooltipContent}</ReactTooltip>
       <Head>
         <title>Locations - NextJobs</title>

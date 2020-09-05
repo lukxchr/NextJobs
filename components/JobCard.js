@@ -25,8 +25,7 @@ function JobCard ({ job }) {
             </div>
             <Link href={`/jobs/${id}`}>
               <a
-                className='text-lg font-bold font-gray-900 tracking-wide mt-1 cursor-pointer
-              hover:underline'
+                className='text-lg font-bold font-gray-800 tracking-wide mt-1 cursor-pointer hover:underline'
               >{title}
               </a>
             </Link>
