@@ -1,3 +1,5 @@
+import remark from 'remark'
+import html from 'remark-html'
 import Head from 'next/head'
 import Layout from 'components/layout'
 import { initApolloClient } from 'graphql/apollo'
@@ -32,7 +34,13 @@ export async function getStaticProps({ params }) {
   const query = await apolloClient.query({
     query: GET_JOB_BY_ID, variables: {id: params.id}
   })
+
   const job = query.data.jobs[0] || null
+  const processedJobDescription = await remark()
+    .use(html)
+    .process(job.description)
+  job.description = processedJobDescription.toString()
+  
   return {props: {id: params.id, job}}
 }
 

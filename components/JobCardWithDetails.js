@@ -5,8 +5,11 @@ function JobCardWithDetails ({ job }) {
   return (
     <div className='mt-8 mx-4 md:mx-16'>
       <JobCard job={job} />
-      <div className='bg-gray-100 shadow-md rounded border-gray-300 border-t-2 text-xl p-4 mx-0'>
-        {job.description}
+      <div
+        dangerouslySetInnerHTML={{ __html: job.description }}
+        className='job-description bg-gray-100 shadow-md rounded border-gray-300 border-t-2 text-xl p-4 mx-0'
+      >
+        {/* {job.description} */}
       </div>
       <div className='bg-gray-100 shadow-md rounded border-gray-300 border-t-2 p-4 mx-0'>
         <button

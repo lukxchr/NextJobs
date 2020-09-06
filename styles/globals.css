@@ -16,14 +16,11 @@ a {
   box-sizing: border-box;
 }
 
-/* .map-marker {
-  fill: #FF7918;
-  r: 2;
-  cursor: pointer;
+.job-description > ul {
+  list-style: initial;
+  margin: 0.5rem;
+  padding-left: 1.5rem;
 }
-.map-marker:hover {
-  r: 3;
-} */
 
 #layout-container {
   background-color: #DFDBE5;
